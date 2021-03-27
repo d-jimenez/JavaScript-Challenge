@@ -6,57 +6,8 @@ var tableData = data;
 // Get a reference to the table body
 var tbody = d3.select("tbody");
 
-// // Console.log the UFO data from data.js
-// console.log(tableData);
-
-// // Step 1: Loop Through `data` and console.log each UFO object
-// tableData.forEach(function(ufoElement) {
-//   console.log(ufoElement);
-// });
-
-// // Step 2:  Use d3 to append one table row `tr` for each UFO object
-// // Don't worry about adding cells or text yet, just try appending the `tr` elements.
-// tableData.forEach(function(ufoElement) {
-//   console.log(ufoElement);
-//   var row = tbody.append("tr");
-// });
-
-// // // Step 3:  Use `Object.entries` to console.log each UFO element value
-// tableData.forEach(function(ufoElement) {
-//   console.log(ufoElement);
-//   var row = tbody.append("tr");
-  
-//   Object.entries(ufoElement).forEach(function([key, value]) {
-//       console.log(key, value);
-//   });
-// });
-
-// // Step 4: Use d3 to append 1 cell per ufo report value (datetime, city, state, country, shape,durationMinutes,comments,)
-// tableData.forEach(function(ufoElement) {
-//   console.log(ufoElement);
-//   var row = tbody.append("tr");
-
-//   Object.entries(ufoElement).forEach(function([key, value]) {
-//     console.log(key, value);
-//     // Append a cell to the row for each value
-//     // in the ufo report object
-//     var cell = row.append("td");
-//   });
-// });
-
-// // Step 5: Use d3 to update each cell's text with
+// // Use d3 to update each cell's text with
 // // ufo element values (datetime, city, state, country, shape,durationMinutes,comments)
-// tableData.forEach(function(ufoElement) {
-//   console.log(ufoElement);
-//   var row = tbody.append("tr");
-//   Object.entries(ufoElement).forEach(function([key, value]) {
-//     console.log(key, value);
-//     // Append a cell to the row for each value
-//     // in the weather report object
-//     var cell = row.append("td");
-//     cell.text(value);
-//   });
-// });
 
 // BONUS: Refactor to use Arrow Functions!
 tableData.forEach((ufoElement) => {
@@ -93,12 +44,8 @@ function runEnter() {
   // Get the value property of the input element
   var inputValue = inputElement.property("value");
 
-  // console.log(inputValue);
-  // console.log(ufo);
-
   var filteredData = ufo.filter(oneElement => oneElement.datetime === inputValue);
 
-  // console.log(filteredData);
   
   // Then, select the unordered tbofy element by class name
   var table = d3.select("tbody");
@@ -114,31 +61,3 @@ function runEnter() {
     });
   });
 };
-
-
-
-
-//  // BONUS: Calculate summary statistics for the age field of the filtered data
-
-//   // First, create an array with just the age values
-//   var ages = filteredData.map(person => person.age);
-
-//   // Next, use math.js to calculate the mean, median, mode, var, and std of the ages
-//   var mean = math.mean(ages);
-//   var median = math.median(ages);
-//   var mode = math.mode(ages);
-//   var variance = math.var(ages);
-//   var standardDeviation = math.std(ages);
-
-//   // Then, select the unordered list element by class name
-//   var list = d3.select(".summary");
-
-//   // remove any children from the list to
-//   list.html("");
-
-//   // append stats to the list
-//   list.append("li").text(`Mean: ${mean}`);
-//   list.append("li").text(`Median: ${median}`);
-//   list.append("li").text(`Mode: ${mode}`);
-//   list.append("li").text(`Variance: ${variance}`);
-//   list.append("li").text(`Standard Deviation: ${standardDeviation}`);
