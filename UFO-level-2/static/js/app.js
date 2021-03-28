@@ -50,19 +50,71 @@ function runEnter() {
   // Get the value property of the input element
   var cityValue = inputCity.property("value");
 
-  var filteredData = ufo.filter(oneElement => 
-    oneElement.datetime === dateValue &&
-    oneElement.city==cityValue);
+  // State Filter
+  // Select the input element and get the raw HTML node
+  var inputState = d3.select("#state");
+  // Get the value property of the input element
+  var stateValue = inputState.property("value");
 
-  // console.log(filteredData);
-  
+  // Country Filter
+  // Select the input element and get the raw HTML node
+  var inputCountry = d3.select("#country");
+  // Get the value property of the input element
+  var countryValue = inputCountry.property("value");
+
+  // Shape Filter
+  // Select the input element and get the raw HTML node
+  var inputShape = d3.select("#shape");
+  // Get the value property of the input element
+  var shapeValue = inputShape.property("value");
+
+  // Check to see if the Date filter is empty, otherwise perform the filter
+  if(dateValue==""){
+    console.log("No Date Filter")
+    var filterDate=ufo;
+  } else{
+    var filterDate = ufo.filter(oneElement => oneElement.datetime === dateValue);
+  };
+
+  // Check to see if the Date filter is empty, otherwise perform the filter
+  if(cityValue == ""){
+    console.log("No City Filter");
+    var filterCity=filterDate
+  } else{
+    var filterCity = filterDate.filter(oneElement => oneElement.city === cityValue);
+  };
+
+   // Check to see if the Stat filter is empty, otherwise perform the filter
+   if(stateValue == ""){
+    console.log("No State Filter");
+    var filterState=filterCity
+  } else{
+    var filterState = filterCity.filter(oneElement => oneElement.state === stateValue);
+  };
+
+  // Check to see if the Stat filter is empty, otherwise perform the filter
+  if(countryValue == ""){
+    console.log("No Country Filter");
+    var filterCountry=filterState
+  } else{
+    var filterCountry = filterState.filter(oneElement => oneElement.country === countryValue);
+  };
+
+   // Check to see if the Stat filter is empty, otherwise perform the filter
+   if(shapeValue == ""){
+    console.log("No Shape Filter");
+    var filterShape=filterCountry
+  } else{
+    var filterShape = filterCountry.filter(oneElement => oneElement.shape === shapeValue);
+  };
+
   // Then, select the unordered tbofy element by class name
   var table = d3.select("tbody");
 
   // remove any children from the tbody
   table.html("");
 
-  filteredData.forEach((ufoElement) => {
+  filterShape.forEach((ufoElement) => {
     var row = tbody.append("tr");
     Object.entries(ufoElement).forEach(([key, value]) => {
       var cell = row.append("td");
